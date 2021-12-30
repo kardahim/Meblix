@@ -14,7 +14,7 @@
     {{-- custom CSS --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {{-- custom JS --}}
-    <script src="{{ asset('js/scriprs.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </head>
 <body>
     {{-- header --}}
