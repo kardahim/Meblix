@@ -15,10 +15,8 @@ class AddRelationshipToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('address_id');
-            $table->unsignedBigInteger('cart_id');
 
             $table->foreign('address_id')->references('id')->on('addresses');
-            $table->foreign('cart_id')->references('id')->on('cart');
         });
     }
 
@@ -30,7 +28,7 @@ class AddRelationshipToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['address_id', 'cart_id']);
+            $table->dropForeign(['address_id']);
         });
     }
 }

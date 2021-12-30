@@ -15,10 +15,8 @@ class AddRelationshipToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('cart_id');
 
             $table->foreign('category_id')->references('id')->on('category');
-            $table->foreign('cart_id')->references('id')->on('cart');
         });
     }
 
@@ -30,7 +28,7 @@ class AddRelationshipToProducts extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['category_id', 'cart_id']);
+            $table->dropForeign(['category_id']);
         });
     }
 }
