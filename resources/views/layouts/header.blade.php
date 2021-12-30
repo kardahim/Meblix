@@ -1,3 +1,8 @@
+<?php
+use Illuminate\Support\Facades\DB;
+$category = DB::table('category')->select('id','name')->get();
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   {{-- logo --}}
   <a class="navbar-brand" href="/">Meblix</a>
@@ -16,17 +21,15 @@
           Katalog
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+          @foreach ($category as $item)
+          <a class="dropdown-item" href="#">{{ $item->name }}</a>
+          @endforeach
       </li>
       {{-- searchbar --}}
       <li class="nav-item">
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
         </form>
       </li>
     </ul>
