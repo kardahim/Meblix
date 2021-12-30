@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// landing page
 Route::get('/', function () {
     return view('index');
+});
+
+// login
+Route::get('/login', function () {
+    return view('users.login');
+});
+
+Route::post('/login', [UserController::class, 'login']);
+
+// logout
+Route::get('/logout', function () {
+    Session::forget('user');
+    return Redirect('/');
 });
