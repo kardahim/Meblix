@@ -21,4 +21,16 @@ class ProductController extends Controller
 
         return view('products.detail', ['product' => $product, 'category_name' => $category_name]);
     }
+
+    public function search(Request $request)
+    {
+
+        $search = Product::with('category')
+            ->where('name', 'like', '%' . $request->input('search_input') . '%')
+            // i need filter category.name but i cant reach it
+            // ->orWhere('name', 'like', '%' . $request->input('search_input') . '%')
+            ->get();
+
+        return view('products.search', ['products' => $search]);
+    }
 }
