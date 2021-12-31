@@ -12,4 +12,10 @@ class ProductController extends Controller
         $products = Product::where('id', '<', 5)->get();
         return view('index', ['products' => $products]);
     }
+
+    public function detail($id)
+    {
+        $product = Product::find($id);
+        return view('products.detail', ['product' => $product]);
+    }
 }

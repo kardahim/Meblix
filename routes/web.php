@@ -31,3 +31,5 @@ Route::post('/rejestracja', [UserController::class, 'register'])->name('register
 // | Product System
 // |--------------------------------------------------------------------------
 Route::get('/', [ProductController::class, 'index']);
+
+Route::get("/produkt/{id}", [ProductController::class, 'detail'])->name('detail');

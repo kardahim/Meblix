@@ -35,7 +35,7 @@
         <h3>Popularne teraz</h3>    
         <div class="popular-item">    
         @foreach ($products as $item)    
-          <a href="detail/{{ $item['id'] }}">    
+          <a href="{{ route('detail', ['id' => $item['id']]) }}">    
             <img src="{{ $item['image_link'] }}" alt="{{ $item['name'] }}" class="popular-img">    
             <h3>{{ $item['name'] }}</h3>    
           </a>    
