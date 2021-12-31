@@ -10,7 +10,7 @@
                 <h2>{{ $product['name'] }}</h2>    
                 <h3>Cena: {{ $product['price'] }}zł</h3>    
                 <h4>Opis: {{ $product['description'] }}</h4>    
-                <h4>Kategoria: {{ $product['category'] }}</h4>    
+                <h4>Kategoria: {{ $category_name }}</h4>    
                 <br><br>    
                 <form action="" method="POST">    
                     @csrf    
