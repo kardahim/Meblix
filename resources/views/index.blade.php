@@ -5,9 +5,9 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             {{-- indicators --}}
-            @foreach ($products as $item)
-            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $item['id']-1 }}" class="{{ $item['id']==1?'active':'' }}"></li>
-            @endforeach
+            @for ($i = 0; $i < 4; $i++)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $i }}" class="{{ $i==1?'active':'' }}"></li>
+            @endfor
         </ol>
         <div class="carousel-inner">
             {{-- carousel items --}}
