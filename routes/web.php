@@ -21,6 +21,12 @@ Route::get('/logout', function () {
     return Redirect('/');
 });
 
+Route::get('/rejestracja', function () {
+    return view('users.register');
+})->name('register');
+
+Route::post('/rejestracja', [UserController::class, 'register'])->name('register');
+
 // |--------------------------------------------------------------------------
 // | Product System
 // |--------------------------------------------------------------------------

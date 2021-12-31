@@ -54,7 +54,7 @@ $category = DB::table('category')->select('id','name')->get();
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/login">Zaloguj się</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Zarejestruj się</a>
+          <a class="dropdown-item" href="{{ route('register') }}">Zarejestruj się</a>
         </div>
       </li> 
       @endif
