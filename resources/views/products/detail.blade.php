@@ -12,7 +12,7 @@
                 <h4>Opis: {{ $product['description'] }}</h4>    
                 <h4>Kategoria: {{ $category_name }}</h4>    
                 <br><br>    
-                <form action="" method="POST">    
+                <form action="{{ route('addToCart') }}" method="POST">      
                     @csrf    
                     <input type="hidden" name="product_id" value="{{ $product['id'] }}">    
                     <button class="btn btn-primary">Dodaj do koszyka</button>    
