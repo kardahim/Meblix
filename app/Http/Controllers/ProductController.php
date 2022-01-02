@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -50,7 +51,18 @@ class ProductController extends Controller
             $cart = new Cart;
             $cart->user_id = $request->session()->get('user')['id'];
             $cart->product_id = $request->product_id;
-            $cart->save();
+            $cart->amount = 1;
+
+            $isInCart = Cart::where('user_id', $cart->user_id)
+                ->where('product_id', $cart->product_id)
+                ->first();
+
+            if ($isInCart === null) {
+                $cart->save();
+            } else {
+                $isInCart->amount = $isInCart->amount + 1;
+                $isInCart->update();
+            }
             return redirect('/');
         } else {
             return redirect('/login');
@@ -62,5 +74,15 @@ class ProductController extends Controller
         $userId = Session::get('user')['id'];
 
         return Cart::where('user_id', $userId)->count();
+    }
+
+    public function cartList()
+    {
+        $userId = Session::get('user')['id'];
+        $products = Cart::with("product")
+            ->where('user_id', $userId)
+            ->get();
+
+        return view('products.cart', ['products' => $products]);
     }
 }
