@@ -1,6 +1,6 @@
 @extends('layouts.master')    
 @section('content')    
-    <div class="container content-size">
+    <div class="container content-size" style="padding-bottom: 100px">
         @foreach ($products as $product)   
         <div class="row">    
             <div class="col-sm-6">    
