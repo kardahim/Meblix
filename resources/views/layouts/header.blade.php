@@ -67,7 +67,7 @@ if (Session::has('user'))
       @endif
       {{-- Cart --}}
       <li class="nav-item active">
-        <a class="nav-link" href="/">Koszyk({{$total}})</a>
+        <a class="nav-link" href="{{ route('cartList') }}">Koszyk({{$total}})</a>
       </li>
     </ul>
   </div>

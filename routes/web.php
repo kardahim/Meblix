@@ -39,3 +39,5 @@ Route::get("/szukaj", [ProductController::class, 'search'])->name('search');
 Route::get("/katalog/{id}", [ProductController::class, 'catalog'])->name('catalog');
 
 Route::post("/dodaj", [ProductController::class, 'addToCart'])->name('addToCart');
+
+Route::get("/koszyk", [ProductController::class, 'cartList'])->name('cartList');
