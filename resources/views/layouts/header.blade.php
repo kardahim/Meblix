@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Support\Facades\DB;
 $category = DB::table('category')->select('id','name')->get();
+
+use App\Http\Controllers\ProductController;
+$total = ProductController::cartItem();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -60,7 +63,7 @@ $category = DB::table('category')->select('id','name')->get();
       @endif
       {{-- Cart --}}
       <li class="nav-item active">
-        <a class="nav-link" href="/">Koszyk(0)</a>
+        <a class="nav-link" href="/">Koszyk({{$total}})</a>
       </li>
     </ul>
   </div>
