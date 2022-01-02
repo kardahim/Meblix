@@ -33,4 +33,12 @@ class ProductController extends Controller
 
         return view('products.search', ['products' => $search]);
     }
+
+    public function catalog($id)
+    {
+        $products = Product::with('category')->where('category_id', $id)->get();
+
+        // return dd($products);
+        return view('products.category', ['products' => $products]);
+    }
 }

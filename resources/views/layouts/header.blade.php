@@ -22,7 +22,7 @@ $category = DB::table('category')->select('id','name')->get();
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           @foreach ($category as $item)
-          <a class="dropdown-item" href="#">{{ $item->name }}</a>
+          <a class="dropdown-item" href="{{ route('catalog', ['id' => $item->id]) }}">{{ $item->name }}</a>
           @endforeach
       </li>
       {{-- searchbar --}}
