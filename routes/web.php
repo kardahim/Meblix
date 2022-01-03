@@ -30,6 +30,7 @@ Route::post('/rejestracja', [UserController::class, 'register'])->name('register
 // |--------------------------------------------------------------------------
 // | Product System
 // |--------------------------------------------------------------------------
+
 Route::get('/', [ProductController::class, 'index']);
 
 Route::get("/produkt/{id}", [ProductController::class, 'detail'])->name('detail');
@@ -47,3 +48,7 @@ Route::get("/usuń/{id}", [ProductController::class, 'removeFromCart'])->name('r
 Route::get("/zwieksz/{id}", [ProductController::class, 'increseAmount'])->name('increseAmount');
 
 Route::get("/zmniejsz/{id}", [ProductController::class, 'decreseAmount'])->name('decreseAmount');
+
+// |--------------------------------------------------------------------------
+// | Admin System
+// |--------------------------------------------------------------------------
