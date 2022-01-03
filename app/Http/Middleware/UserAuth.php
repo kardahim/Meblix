@@ -22,12 +22,12 @@ class UserAuth
         }
 
         // disable admin to logged off users
-        if ($request->path() == "admin" && (!$request->session()->has('user'))) {
+        if ($request->is('admin/*') && (!$request->session()->has('user'))) {
             return redirect('/');
         }
 
         // disable admin to users with status !== 1
-        if ($request->path() == "admin" && $request->session()->has('user') && session('user')['status'] !== 1) {
+        if ($request->is('admin/*') && $request->session()->has('user') && session('user')['status'] !== 1) {
             return redirect('/');
         }
 
