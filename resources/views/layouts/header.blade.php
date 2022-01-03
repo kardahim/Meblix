@@ -33,12 +33,18 @@ if (Session::has('user'))
           @endforeach
       </li>
       {{-- searchbar --}}
-      <li class="nav-item">
+      <li class="nav-item" style="margin-left: 16px">
         <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}">
           <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search_input">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
         </form>
       </li>
+      {{-- Admin button --}}
+      @if (Session::has('user') && Session('user')['status']==1)
+      <li class="nav-item" style="margin-left: 16px">
+        <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('adminPanel') }}">Administracja</a>
+      </li>
+      @endif
     </ul>
     {{-- user session --}}
     <ul class="navbar-nav">
