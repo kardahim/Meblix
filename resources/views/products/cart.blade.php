@@ -24,7 +24,7 @@
                     <button class="btn btn-warning">-</button>
                     <input type="number" value="{{ $item->amount }}" disabled>
                     <button class="btn btn-warning">+</button>   
-                    <button class="btn btn-danger">X</button> 
+                    <a class="btn btn-danger" href="{{ route('removeFromCart', ['id' => $item->id]) }}">X</a> 
                 </div>
                 {{-- price --}}
                 <div class="col-sm-3">

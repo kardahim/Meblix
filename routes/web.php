@@ -41,3 +41,5 @@ Route::get("/katalog/{id}", [ProductController::class, 'catalog'])->name('catalo
 Route::post("/dodaj", [ProductController::class, 'addToCart'])->name('addToCart');
 
 Route::get("/koszyk", [ProductController::class, 'cartList'])->name('cartList');
+
+Route::get("/usuń/{id}", [ProductController::class, 'removeFromCart'])->name('removeFromCart');
