@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
@@ -52,3 +53,5 @@ Route::get("/zmniejsz/{id}", [ProductController::class, 'decreseAmount'])->name(
 // |--------------------------------------------------------------------------
 // | Admin System
 // |--------------------------------------------------------------------------
+
+Route::get('/admin/{id}', [AdminController::class, 'adminPanel'])->name('adminPanel');;

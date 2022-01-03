@@ -42,7 +42,7 @@ if (Session::has('user'))
       {{-- Admin button --}}
       @if (Session::has('user') && Session('user')['status']==1)
       <li class="nav-item" style="margin-left: 16px">
-        <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('adminPanel') }}">Administracja</a>
+        <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('adminPanel', ['id' => 1]) }}">Administracja</a>
       </li>
       @endif
     </ul>
