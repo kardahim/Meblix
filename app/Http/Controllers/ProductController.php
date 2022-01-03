@@ -91,4 +91,24 @@ class ProductController extends Controller
         Cart::destroy($id);
         return redirect(route('cartList'));
     }
+
+    public function increseAmount($id)
+    {
+        $cart = Cart::find($id);
+        $cart->amount = $cart->amount + 1;
+        $cart->update();
+
+        return redirect(route('cartList'));
+    }
+
+    public function decreseAmount($id)
+    {
+        $cart = Cart::find($id);
+        if ($cart->amount > 1) {
+            $cart->amount = $cart->amount - 1;
+            $cart->update();
+        }
+
+        return redirect(route('cartList'));
+    }
 }

@@ -43,3 +43,7 @@ Route::post("/dodaj", [ProductController::class, 'addToCart'])->name('addToCart'
 Route::get("/koszyk", [ProductController::class, 'cartList'])->name('cartList');
 
 Route::get("/usuń/{id}", [ProductController::class, 'removeFromCart'])->name('removeFromCart');
+
+Route::get("/zwieksz/{id}", [ProductController::class, 'increseAmount'])->name('increseAmount');
+
+Route::get("/zmniejsz/{id}", [ProductController::class, 'decreseAmount'])->name('decreseAmount');

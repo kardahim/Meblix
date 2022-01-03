@@ -21,9 +21,9 @@
                 {{-- buttnos --}}    
                 <div class="col-sm-3">
                     <br><br>
-                    <button class="btn btn-warning">-</button>
+                    <a class="btn btn-warning" href="{{ route('decreseAmount', ['id' => $item->id]) }}">-</a>
                     <input type="number" value="{{ $item->amount }}" disabled>
-                    <button class="btn btn-warning">+</button>   
+                    <a class="btn btn-warning" href="{{ route('increseAmount', ['id' => $item->id]) }}">+</a>   
                     <a class="btn btn-danger" href="{{ route('removeFromCart', ['id' => $item->id]) }}">X</a> 
                 </div>
                 {{-- price --}}
