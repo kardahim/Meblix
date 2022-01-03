@@ -2,8 +2,7 @@
 @section('content')    
 <div class="content-size" style="padding-left: 50px; padding-top:50px">    
     <div class="col-sm-11">    
-        <div class="popular-wrapper">    
-            <h4>Zawartość koszyka</h4>    
+        <div class="popular-wrapper">      
             @foreach ($products as $item)    
             <div class="row cart-list"> 
                 {{-- image --}}
@@ -23,7 +22,7 @@
                 <div class="col-sm-3">
                     <br><br>
                     <button class="btn btn-warning">-</button>
-                    <input type="number" value="{{ $item->amount }}">
+                    <input type="number" value="{{ $item->amount }}" disabled>
                     <button class="btn btn-warning">+</button>   
                     <button class="btn btn-danger">X</button> 
                 </div>
