@@ -16,10 +16,25 @@ class AdminController extends Controller
         $users = User::all();
 
         if ($id == 1)
-            return view('admins.index', ['items' => $products]);
+            return view('admins.index', ['items' => $products, 'categories' => $categories]);
         else if ($id == 2)
             return view('admins.index', ['items' => $categories]);
         else if ($id == 3)
             return view('admins.index', ['items' => $users]);
+    }
+
+    public function addNewProduct(Request $request)
+    {
+        $product = new Product;
+
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->image_link = $request->image_link;
+        $product->description = $request->description;
+        $product->category_id = $request->category;
+
+        $product->save();
+
+        return redirect(route("adminPanel", ['id' => 1]));
     }
 }

@@ -12,12 +12,43 @@
             </div>
             {{-- page 1 --}}
             @if (Request::path() == "admin/1")
+            {{-- header --}}
             <div class="row cart-list">
                 <div class="col-sm-6"><h3>Produkt</h3></div>
-                <div class="col-sm-1"><h3>Cena</h3></div>
+                <div class="col-sm-2"><h3>Cena</h3></div>
                 <div class="col-sm-2"><h3>Kategoria</h3></div>
                 <div class="col-sm-1"><h3>Akcja</h3></div>
             </div>
+            {{-- form --}}
+            <form class="row cart-list" method="POST" action="{{ route('addNewProduct') }}">
+                @csrf
+                <div class="col-sm-2">
+                    <br><br>
+                    <input class="form-control col-sm-6" type="text" placeholder="Link" id="imgLink" name="image_link">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control col-sm-6" type="text" placeholder="Nazwa" id="name" name="name">
+                    <br>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Opis"></textarea>
+                </div>
+                <div class="col-sm-2">
+                    <br><br>
+                    <input class="form-control col-sm-6" type="number" step="0.01" min="0" placeholder="Cena" id="price" name="price">
+                </div>
+                <div class="col-sm-2">
+                    <br><br>
+                    <select class="form-control" id="exampleFormControlSelect1" name="category">
+                    @foreach ($categories as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <div class="col-sm-1">
+                    <br><br>
+                    <button type="submit" class="btn btn-outline-success">Dodaj</button>
+                </div>
+            </form>
+            {{-- products --}}
             @foreach ($items as $item)    
             <div class="row cart-list"> 
                 {{-- image --}}
@@ -34,7 +65,7 @@
                     </div>    
                 </div>
                 {{-- price --}}
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <br><br>
                     <h2>{{ $item->price }} zł</h2> 
                 </div> 

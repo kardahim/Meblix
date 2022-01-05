@@ -55,3 +55,5 @@ Route::get("/zmniejsz/{id}", [ProductController::class, 'decreseAmount'])->name(
 // |--------------------------------------------------------------------------
 
 Route::get('/admin/{id}', [AdminController::class, 'adminPanel'])->name('adminPanel');;
+
+Route::post('/admin/nowyprodukt', [AdminController::class, 'addNewProduct'])->name('addNewProduct');;
