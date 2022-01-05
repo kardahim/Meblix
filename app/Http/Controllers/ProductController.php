@@ -63,7 +63,7 @@ class ProductController extends Controller
                 $isInCart->amount = $isInCart->amount + 1;
                 $isInCart->update();
             }
-            return redirect('/');
+            return redirect()->back();
         } else {
             return redirect('/login');
         }
