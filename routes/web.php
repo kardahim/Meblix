@@ -59,3 +59,7 @@ Route::get('/admin/{id}', [AdminController::class, 'adminPanel'])->name('adminPa
 Route::post('/admin/nowyprodukt', [AdminController::class, 'addNewProduct'])->name('addNewProduct');
 
 Route::get('/admin/usunprodukt/{id}', [AdminController::class, 'deleteProduct'])->name('deleteProduct');
+
+Route::get('/admin/edytujprodukt/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
+
+Route::post('/admin/edytujprodukt/{id}', [AdminController::class, 'confirmEditProduct'])->name('confirmEditProduct');

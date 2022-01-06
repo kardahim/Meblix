@@ -47,4 +47,28 @@ class AdminController extends Controller
 
         return redirect(route("adminPanel", ['id' => 1]));
     }
+
+    public function editProduct($id)
+    {
+        $product = Product::find($id);
+        $category = Category::find($product->category_id)->first();
+        $categories = Category::all();
+
+        return view('admins.editProduct', ['product' => $product, 'category' => $category, 'categories' => $categories]);
+    }
+
+    public function confirmEditProduct($id, Request $request)
+    {
+        $product = Product::find($id)->first();
+
+        $product->name = $request->name;
+        $product->image_link = $request->image_link;
+        $product->price = $request->price;
+        $product->category_id = $request->category;
+        $product->description = $request->description;
+
+        $product->update();
+
+        return redirect(route("adminPanel", ['id' => 1]));
+    }
 }
