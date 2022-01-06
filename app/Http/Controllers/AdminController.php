@@ -37,4 +37,11 @@ class AdminController extends Controller
 
         return redirect(route("adminPanel", ['id' => 1]));
     }
+
+    public function deleteProduct($id)
+    {
+        Product::find($id)->delete();
+
+        return redirect(route("adminPanel", ['id' => 1]));
+    }
 }

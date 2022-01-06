@@ -77,7 +77,7 @@
                 <div class="col-sm-2">
                     <br><br>
                     <a class="btn btn-outline-warning my-2 my-sm-0" href="" style="margin-right: 25px">Edytuj</a>
-                    <a class="btn btn-outline-danger my-2 my-sm-0" href="" style="margin-right: 25px">Usuń</a>
+                    <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('deleteProduct',['id'=>$item->id]) }}" style="margin-right: 25px">Usuń</a>
                 </div>    
             </div>    
             @endforeach
