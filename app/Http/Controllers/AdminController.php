@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -40,7 +41,9 @@ class AdminController extends Controller
 
     public function deleteProduct($id)
     {
-        Product::find($id)->delete();
+        $cart = Cart::where('product_id', $id)->first();
+        if ($cart === null)
+            Product::find($id)->delete();
 
         return redirect(route("adminPanel", ['id' => 1]));
     }
