@@ -71,4 +71,15 @@ class AdminController extends Controller
 
         return redirect(route("adminPanel", ['id' => 1]));
     }
+
+    public function addNewCategory(Request $request)
+    {
+        $category = new Category;
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect(route("adminPanel", ['id' => 2]));
+    }
 }

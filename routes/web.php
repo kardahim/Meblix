@@ -63,3 +63,5 @@ Route::get('/admin/usunprodukt/{id}', [AdminController::class, 'deleteProduct'])
 Route::get('/admin/edytujprodukt/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
 
 Route::post('/admin/edytujprodukt/{id}', [AdminController::class, 'confirmEditProduct'])->name('confirmEditProduct');
+
+Route::post('/admin/nowakategoria', [AdminController::class, 'addNewCategory'])->name('addNewCategory');

@@ -88,6 +88,15 @@
                 <div class="col-sm-4"><h3>Ilość produktów</h3></div>
                 <div class="col-sm-3"><h3>Akcja</h3></div>
             </div>
+            <form class="row cart-list" method="POST" action="{{ route('addNewCategory') }}">
+                @csrf
+                <div class="col-sm-8">
+                    <input class="form-control col-sm-6" type="text" placeholder="Nazwa" id="name" name="name">
+                </div>
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-outline-success">Dodaj</button>
+                </div>
+            </form>
             @foreach ($items as $item)    
             <div class="row cart-list"> 
                 {{-- name --}}
