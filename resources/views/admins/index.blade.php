@@ -113,7 +113,7 @@
                 </div>
                 {{-- buttons --}}
                 <div class="col-sm-3">
-                    <a class="btn btn-outline-warning my-2 my-sm-0" href="" style="margin-right: 25px">Edytuj</a>
+                    <a class="btn btn-outline-warning my-2 my-sm-0" href="{{ route('editCategory',['id'=>$item->id]) }} style="margin-right: 25px">Edytuj</a>
                     <a class="btn btn-outline-danger my-2 my-sm-0" href="" style="margin-right: 25px">Usuń</a>
                 </div>  
             </div>    

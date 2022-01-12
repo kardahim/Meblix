@@ -82,4 +82,22 @@ class AdminController extends Controller
 
         return redirect(route("adminPanel", ['id' => 2]));
     }
+
+    public function editCategory($id)
+    {
+        $category = Category::find($id);
+        $categories = Category::all();
+        $products = Product::where('category_id', $id)->get();
+        return view('admins.editCategory', ['category' => $category, 'categories' => $categories, 'products' => $products]);
+    }
+
+    public function confirmEditCategory($id, Request $request)
+    {
+        $category = Category::find($id)->first();
+        $category->name = $request->name;
+
+        $category->update();
+
+        return redirect(route("adminPanel", ['id' => 2]));
+    }
 }
