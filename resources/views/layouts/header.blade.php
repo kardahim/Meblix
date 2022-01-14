@@ -56,7 +56,7 @@ if (Session::has('user'))
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/logout">Wyloguj się</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Profil</a>
+          <a class="dropdown-item" href="{{ route('profile',['id'=>Session::get('user')['id']]) }}">Profil</a>
         </div>
       </li> 
       @else

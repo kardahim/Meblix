@@ -28,6 +28,8 @@ Route::get('/rejestracja', function () {
 
 Route::post('/rejestracja', [UserController::class, 'register'])->name('register');
 
+Route::get("/profil/{id}", [UserController::class, 'profile'])->name('profile');
+
 // |--------------------------------------------------------------------------
 // | Product System
 // |--------------------------------------------------------------------------

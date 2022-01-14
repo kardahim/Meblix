@@ -62,4 +62,10 @@ class UserController extends Controller
 
         return redirect('/login');
     }
+
+    public function profile($id)
+    {
+        $user = User::with('address')->where('id', $id)->first();
+        return view('users.profile', ['user' => $user]);
+    }
 }
