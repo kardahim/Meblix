@@ -92,7 +92,7 @@ class AdminController extends Controller
 
     public function confirmEditCategory($id, Request $request)
     {
-        $category = Category::find($id)->first();
+        $category = Category::find($id);
         $category->name = $request->name;
 
         $category->update();
