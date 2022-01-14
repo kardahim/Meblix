@@ -69,3 +69,5 @@ Route::post('/admin/nowakategoria', [AdminController::class, 'addNewCategory'])-
 Route::get('/admin/edytujkategorie/{id}', [AdminController::class, 'editCategory'])->name('editCategory');
 
 Route::post('/admin/edytujkategorie/{id}', [AdminController::class, 'confirmEditCategory'])->name('confirmEditCategory');
+
+Route::get('/admin/usunkategorie/{id}', [AdminController::class, 'deleteCategory'])->name('deleteCategory');

@@ -99,4 +99,14 @@ class AdminController extends Controller
 
         return redirect(route("adminPanel", ['id' => 2]));
     }
+
+    public function deleteCategory($id)
+    {
+        $product = Product::where('category_id', $id)->first();
+
+        if ($product === null)
+            Category::find($id)->delete();
+
+        return redirect(route("adminPanel", ['id' => 2]));
+    }
 }
