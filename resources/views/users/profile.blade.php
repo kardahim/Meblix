@@ -1,12 +1,12 @@
 @extends('layouts.master')    
 @section('content') 
-<div class="content-size container offset-sm-4" style="padding-top:50px">    
+<div class="content-size container offset-sm-4" style="padding-top:155px">    
     <div class="col-sm-7">    
         <div>
             {{-- first name --}}
             <div class="row cart-list"> 
                 <div class="col-sm-6">      
-                    <h2>Imię</h2>      
+                    <h2>Imię</h2>
                 </div>
                 <div class="col-sm-6">      
                     <h2>{{ $user->first_name }}</h2>      
