@@ -59,8 +59,7 @@ class AdminController extends Controller
 
     public function confirmEditProduct($id, Request $request)
     {
-        $product = Product::find($id)->first();
-
+        $product = Product::where('id', $id)->first();
         $product->name = $request->name;
         $product->image_link = $request->image_link;
         $product->price = $request->price;
