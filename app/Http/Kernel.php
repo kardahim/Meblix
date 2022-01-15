@@ -24,6 +24,8 @@ class Kernel extends HttpKernel
         // login auth
         \Illuminate\Session\Middleware\StartSession::class,
         \App\Http\Middleware\UserAuth::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+
 
     ];
 

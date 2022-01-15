@@ -6,12 +6,24 @@ use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            Session::put('loginError', 'Login i hasło są wymagane!');
+            return Redirect::back();
+        }
+        Session::forget('loginError');
+
         $user =  User::where(['email' => $request->email])->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {

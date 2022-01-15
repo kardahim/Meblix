@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserAuth
 {
@@ -29,6 +30,11 @@ class UserAuth
         // disable admin to users with status !== 1
         if ($request->is('admin/*') && $request->session()->has('user') && session('user')['status'] !== 1) {
             return redirect('/');
+        }
+
+        // delete session when change url
+        if ($request->path() !== "login" && $request->session()->has('loginError')) {
+            Session::forget('loginError');
         }
 
         return $next($request);
