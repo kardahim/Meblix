@@ -78,11 +78,14 @@ class ProductController extends Controller
 
     public function cartList()
     {
-        $userId = Session::get('user')['id'];
+        if (Session::has("user")) {
+            $userId = Session::get('user')['id'];
+        } else {
+            $userId = 1;
+        }
         $products = Cart::with("product")
             ->where('user_id', $userId)
             ->get();
-
         return view('products.cart', ['products' => $products]);
     }
 

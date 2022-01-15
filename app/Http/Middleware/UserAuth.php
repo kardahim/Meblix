@@ -32,6 +32,11 @@ class UserAuth
             return redirect('/');
         }
 
+        // disable admin to logged off users
+        if ($request->path() == "koszyk" && (!$request->session()->has('user'))) {
+            return redirect('/');
+        }
+
         // delete session when change url
         if ($request->path() !== "login" && $request->session()->has('loginError')) {
             Session::forget('loginError');
