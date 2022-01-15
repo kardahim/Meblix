@@ -75,8 +75,13 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    public function profile($id)
+    public function profile($id, Request $request)
     {
+        if ($request->is('profil/*') && $request->session()->has('user') && session('user')['status'] !== 1 && session('user')['id'] != $id) {
+            // dd(session('user'));
+            return redirect('/');
+        }
+
         $user = User::with('address')->where('id', $id)->first();
         return view('users.profile', ['user' => $user]);
     }
