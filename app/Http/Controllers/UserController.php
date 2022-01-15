@@ -22,12 +22,12 @@ class UserController extends Controller
             Session::put('loginError', 'Login i hasło są wymagane!');
             return Redirect::back();
         }
-        Session::forget('loginError');
 
         $user =  User::where(['email' => $request->email])->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return "Podałeś złe hasło lub adres email";
+            Session::put('loginError', 'Login lub hasło jest niepoprawne!');
+            return Redirect::back();
         } else {
             $request->session()->put('user', $user);
             return redirect('/');
