@@ -49,6 +49,9 @@ class UserAuth
         if ($request->path() !== "rejestracja" && $request->session()->has('registerError')) {
             Session::forget('registerError');
         }
+        if ($request->path() !== "admin/1" && $request->session()->has('addProductError')) {
+            Session::forget('addProductError');
+        }
 
         return $next($request);
     }

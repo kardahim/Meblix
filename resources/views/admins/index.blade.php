@@ -13,6 +13,15 @@
             {{-- page 1 --}}
             @if (Request::path() == "admin/1")
             {{-- header --}}
+            @if(Session::has('addProductError'))
+            <div class="alert alert-danger">
+                @foreach (Session::get('addProductError') as $item)
+                @foreach ($item as $error => $message)
+                    {{$message}}<br>
+                @endforeach
+            @endforeach
+            </div>
+            @endif
             <div class="row cart-list">
                 <div class="col-sm-6"><h3>Produkt</h3></div>
                 <div class="col-sm-2"><h3>Cena</h3></div>

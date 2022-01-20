@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -26,17 +29,41 @@ class AdminController extends Controller
 
     public function addNewProduct(Request $request)
     {
-        $product = new Product;
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|regex:/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,}/',
+                'price' => 'required|numeric',
+                'image_link' => 'required',
+                'description' => 'required',
+            ],
+            [
+                'name.required' => "Nazwa produktu wymagana!",
+                'price.required' => "Cena wymagana!",
+                'price.numeric' => "To nie kwota!",
+                'name.regex' => "Nazwa produktu musi zaczynać się wielką literą oraz posiadać min 3 litery!",
+                'image_link.required' => "Link do zdjęcia jest wymagany!",
+                'description.required' => "Opis jest wymagany!",
+            ]
+        );
 
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->image_link = $request->image_link;
-        $product->description = $request->description;
-        $product->category_id = $request->category;
+        if ($validator->fails()) {
+            Session::put('addProductError', $validator->getMessageBag()->toArray());
+            return Redirect::back();
+        } else {
+            Session::forget('addProductError');
+            $product = new Product;
 
-        $product->save();
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->image_link = $request->image_link;
+            $product->description = $request->description;
+            $product->category_id = $request->category;
 
-        return redirect(route("adminPanel", ['id' => 1]));
+            $product->save();
+
+            return redirect(route("adminPanel", ['id' => 1]));
+        }
     }
 
     public function deleteProduct($id)
