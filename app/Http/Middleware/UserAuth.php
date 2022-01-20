@@ -46,6 +46,9 @@ class UserAuth
         if ($request->path() !== "login" && $request->session()->has('loginError')) {
             Session::forget('loginError');
         }
+        if ($request->path() !== "rejestracja" && $request->session()->has('registerError')) {
+            Session::forget('registerError');
+        }
 
         return $next($request);
     }

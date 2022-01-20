@@ -1,6 +1,15 @@
 @extends('layouts.master')
 @section('content')
 <div class="content-size container" style="padding-top: 50px">
+    @if(Session::has('registerError'))
+    <div class="alert alert-danger">
+        @foreach (Session::get('registerError') as $item)
+        @foreach ($item as $error => $message)
+            {{$message}}<br>
+        @endforeach
+    @endforeach
+    </div>
+    @endif
     <form action="{{ route('register') }}" method="POST">
         @csrf
         {{-- first name --}}
@@ -16,7 +25,7 @@
         {{-- email address --}}
         <div class="form-group offset-4">
             <label for="exampleInputEmail1" style="font-weight:bold">Adres email</label>
-            <input name="email" type="email" class="form-control col-sm-6" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+            <input name="email" type="text" class="form-control col-sm-6" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
         </div>
         {{-- password --}}
         <div class="form-group offset-4">
