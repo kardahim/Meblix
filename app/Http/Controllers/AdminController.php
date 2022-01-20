@@ -32,16 +32,16 @@ class AdminController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => 'required|regex:/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,}/',
+                'name' => 'required|unique:products,name',
                 'price' => 'required|numeric',
                 'image_link' => 'required',
                 'description' => 'required',
             ],
             [
                 'name.required' => "Nazwa produktu wymagana!",
+                'name.unique' => "Produkt o tej nazwie już istnieje!",
                 'price.required' => "Cena wymagana!",
                 'price.numeric' => "To nie kwota!",
-                'name.regex' => "Nazwa produktu musi zaczynać się wielką literą oraz posiadać min 3 litery!",
                 'image_link.required' => "Link do zdjęcia jest wymagany!",
                 'description.required' => "Opis jest wymagany!",
             ]
@@ -86,27 +86,67 @@ class AdminController extends Controller
 
     public function confirmEditProduct($id, Request $request)
     {
-        $product = Product::where('id', $id)->first();
-        $product->name = $request->name;
-        $product->image_link = $request->image_link;
-        $product->price = $request->price;
-        $product->category_id = $request->category;
-        $product->description = $request->description;
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'price' => 'required|numeric',
+                'image_link' => 'required',
+                'description' => 'required',
+            ],
+            [
+                'name.required' => "Nazwa produktu wymagana!",
+                'price.required' => "Cena wymagana!",
+                'price.numeric' => "To nie kwota!",
+                'image_link.required' => "Link do zdjęcia jest wymagany!",
+                'description.required' => "Opis jest wymagany!",
+            ]
+        );
 
-        $product->update();
+        if ($validator->fails()) {
+            Session::put('editProductError', $validator->getMessageBag()->toArray());
+            return Redirect::back();
+        } else {
 
-        return redirect(route("adminPanel", ['id' => 1]));
+            Session::forget('editProductError');
+            $product = Product::where('id', $id)->first();
+            $product->name = $request->name;
+            $product->image_link = $request->image_link;
+            $product->price = $request->price;
+            $product->category_id = $request->category;
+            $product->description = $request->description;
+
+            $product->update();
+
+            return redirect(route("adminPanel", ['id' => 1]));
+        }
     }
 
     public function addNewCategory(Request $request)
     {
-        $category = new Category;
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|unique:category,name',
+            ],
+            [
+                'name.required' => "Nazwa kategorii wymagana!",
+                'name.unique' => "Kategoria o tej nazwie już istnieje!",
+            ]
+        );
+        if ($validator->fails()) {
+            Session::put('addCategoryError', $validator->getMessageBag()->toArray());
+            return Redirect::back();
+        } else {
+            Session::forget('addCategoryError');
+            $category = new Category;
 
-        $category->name = $request->name;
+            $category->name = $request->name;
 
-        $category->save();
+            $category->save();
 
-        return redirect(route("adminPanel", ['id' => 2]));
+            return redirect(route("adminPanel", ['id' => 2]));
+        }
     }
 
     public function editCategory($id)
@@ -119,12 +159,29 @@ class AdminController extends Controller
 
     public function confirmEditCategory($id, Request $request)
     {
-        $category = Category::find($id);
-        $category->name = $request->name;
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+            ],
+            [
+                'name.required' => "Nazwa produktu wymagana!",
+            ]
+        );
 
-        $category->update();
+        if ($validator->fails()) {
+            Session::put('editCategoryError', $validator->getMessageBag()->toArray());
+            return Redirect::back();
+        } else {
+            Session::forget('editCategoryError');
 
-        return redirect(route("adminPanel", ['id' => 2]));
+            $category = Category::find($id);
+            $category->name = $request->name;
+
+            $category->update();
+
+            return redirect(route("adminPanel", ['id' => 2]));
+        }
     }
 
     public function deleteCategory($id)

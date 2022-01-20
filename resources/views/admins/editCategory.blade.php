@@ -6,6 +6,15 @@
             <div class="row cart-list">
                 <div class="col-sm-6"><h3>Nazwa kategorii</h3></div>
             </div>
+            @if(Session::has('editCategoryError'))
+            <div class="alert alert-danger">
+                @foreach (Session::get('editCategoryError') as $item)
+                    @foreach ($item as $error => $message)
+                        {{$message}}<br>
+                    @endforeach
+                @endforeach
+            </div>  
+            @endif   
             {{-- form --}}
             <form class="row cart-list" method="POST" action="{{ route('confirmEditCategory',['id'=>$category['id']]) }}">
                 @csrf

@@ -52,6 +52,15 @@ class UserAuth
         if ($request->path() !== "admin/1" && $request->session()->has('addProductError')) {
             Session::forget('addProductError');
         }
+        if ($request->path() !== "admin/2" && $request->session()->has('addCategoryError')) {
+            Session::forget('addCategoryError');
+        }
+        if (!$request->is('admin/edytujprodukt/*') && $request->session()->has('editProductError')) {
+            Session::forget('editProductError');
+        }
+        if (!$request->is('admin/edytujkategorie/*') && $request->session()->has('editCategoryError')) {
+            Session::forget('editCategoryError');
+        }
 
         return $next($request);
     }

@@ -92,6 +92,15 @@
             @endforeach
             {{-- page 2 --}}
             @elseif(Request::path() == "admin/2")
+            @if(Session::has('addCategoryError'))
+            <div class="alert alert-danger">
+                @foreach (Session::get('addCategoryError') as $item)
+                    @foreach ($item as $error => $message)
+                        {{$message}}<br>
+                    @endforeach
+                @endforeach
+            </div>
+            @endif
             <div class="row cart-list">
                 <div class="col-sm-4"><h3>Nazwa</h3></div>
                 <div class="col-sm-4"><h3>Ilość produktów</h3></div>

@@ -1,10 +1,19 @@
 @extends('layouts.master')    
 @section('content')    
-    <div class="container content-size">    
+    <div class="container content-size">
+        @if(Session::has('editProductError'))
+            <div class="alert alert-danger">
+                @foreach (Session::get('editProductError') as $item)
+                    @foreach ($item as $error => $message)
+                        {{$message}}<br>
+                    @endforeach
+                @endforeach
+            </div>  
+        @endif      
         <div class="row">    
             <div class="col-sm-6">    
                 <img src="{{ $product['image_link'] }}" alt="{{ $product['name'] }}" class="detail-img">      
-            </div>    
+            </div>
             <form class="col-sm-6" action="{{ route('confirmEditProduct',['id'=>$product['id']]) }}" method="POST">
                 @csrf       
                 <br><br>
