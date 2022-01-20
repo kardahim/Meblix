@@ -86,7 +86,9 @@
                 <div class="col-sm-2">
                     <br><br>
                     <a class="btn btn-outline-warning my-2 my-sm-0" href="{{ route('editProduct',['id'=>$item->id]) }}" style="margin-right: 25px">Edytuj</a>
+                    @if(DB::table('cart')->where('product_id',$item->id)->first() == NULL)
                     <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('deleteProduct',['id'=>$item->id]) }}" style="margin-right: 25px">Usuń</a>
+                    @endif
                 </div>    
             </div>    
             @endforeach
@@ -132,7 +134,9 @@
                 {{-- buttons --}}
                 <div class="col-sm-3">
                     <a class="btn btn-outline-warning my-2 my-sm-0" href="{{ route('editCategory',['id'=>$item->id]) }}" style="margin-right: 25px">Edytuj</a>
-                    <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('deleteCategory',['id'=>$item->id]) }}" style="margin-right: 25px">Usuń</a>
+                    @if(DB::table('products')->where('category_id',$item->id)->count() == 0)
+                    <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ route('deleteCategory',['id'=>$item->id]) }}" style="margin-right: 25px" >Usuń</a>
+                    @endif
                 </div>  
             </div>    
             @endforeach

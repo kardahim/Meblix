@@ -1,3 +1,7 @@
+<?php
+use App\Models\Cart;
+?>
+
 @extends('layouts.master')    
 @section('content')    
     <div class="container content-size">
